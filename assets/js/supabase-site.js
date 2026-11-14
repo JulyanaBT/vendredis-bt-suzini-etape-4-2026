@@ -1,4 +1,4 @@
-import {attachKnownPlayers} from './known-players.js?v=e4';
+import {attachKnownPlayers} from './known-players.js?v=e4-contact';
 import {rankTeams,createTeamCard} from './team-cards.js?v=e4-duo';
 import {config} from './supabase-config.js?v=94';
 async function rawRpc(name,body={}){
@@ -36,7 +36,7 @@ async function loadStatus(){
 if(document.body.dataset.space==='public')loadStatus();
 if(form){form.noValidate=true;
  for(const id of ['p1FirstName','p1LastName','p2FirstName','p2LastName'])document.getElementById(id).maxLength=60;
- for(const id of ['p1Licence','p2Licence']){const input=document.getElementById(id);input.maxLength=8;input.pattern='[0-9]{7}[A-Za-z]';}
+ for(const id of ['p1Licence','p2Licence']){const input=document.getElementById(id);input.maxLength=8;input.pattern='[0-9]{1,7}[A-Za-z]?';}
  const privacy=document.createElement('details');privacy.className='registration-privacy';const summary=document.createElement('summary');summary.textContent='Utilisation des informations';const privacyText=document.createElement('p');privacyText.textContent='Seuls les prénoms, les initiales des noms et les classements sont affichés au public. Les noms complets et les numéros de licence restent réservés à l’organisation. Le nom d’équipe utilise les prénoms, avec une initiale en cas d’homonymie. Les numéros de licence sont réservés à l’organisation pour la gestion de ce tournoi.';privacy.append(summary,privacyText);button.before(privacy);
  form.addEventListener('submit',async event=>{event.preventDefault();await known?.prepare();if(!registrationOpen||button.disabled||!form.reportValidity())return;button.disabled=true;form.dataset.submitting='true';status.textContent='Enregistrement en cours…';
  try{const receipt=await rpc('suzini_e4_register_payment',{p_team:Object.fromEntries(new FormData(form))});document.getElementById('successBox').hidden=false;status.textContent='Inscription enregistrée.';form.reset();document.dispatchEvent(new CustomEvent('suzini:registered',{detail:receipt}));}
