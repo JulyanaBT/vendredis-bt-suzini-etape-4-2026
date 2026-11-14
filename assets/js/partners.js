@@ -1,4 +1,4 @@
-import {rpc} from './supabase-site.js?v=94';
+import {rpc} from './supabase-site.js?v=e4-mobile';
 import {selectSignupTab} from './registration-ui.js?v=94';
 const $=id=>document.getElementById(id),make=(tag,text,cls)=>{const n=document.createElement(tag);if(text)n.textContent=text;if(cls)n.className=cls;return n;};
 const api=(action,data={})=>rpc('suzini_e4_partners',{p_action:action,p_data:data});
