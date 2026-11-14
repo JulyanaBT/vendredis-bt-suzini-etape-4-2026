@@ -1,4 +1,4 @@
-import {rpc} from './supabase-site.js?v=94';
+import {rpc} from './supabase-site.js?v=e4-mobile';
 import {displayShortPlayerName,displayFirstName} from './team-cards.js?v=94';
 import {config} from './supabase-config.js?v=94';
 const paymentUrl="https://tennis-club-de-suzini.sumupstore.com/article/beach-tennis-inscription-double-mixte-challenge-pour-un-competiteur-de-la-paire";
