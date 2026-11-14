@@ -5,11 +5,11 @@ export function attachKnownPlayers(form,{club=false,client=null}={}){
  for(const n of [1,2]){
   const first=form.elements['p'+n+'FirstName'],last=form.elements['p'+n+'LastName'],licence=form.elements['p'+n+'Licence'];if(!first||!last)continue;
   if(licence){licence.required=false;licence.closest('.field').hidden=false;licence.readOnly=false;licence.pattern='[0-9]{1,7}[A-Za-z]?';}
-  const box=make('div');box.className='known-player-status';box.style.cssText='white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:10px;margin:2px 0';box.setAttribute('aria-live','polite');
+  const box=make('span');box.className='known-player-status';box.style.cssText='white-space:nowrap;font-size:9px;margin-left:6px;font-weight:600';box.setAttribute('aria-live','polite');
   const extra=make('div');extra.className='field signup-phone';
   const label=make('label','Téléphone'),phone=make('input');phone.type='tel';phone.name='p'+n+'Phone';phone.autocomplete='tel';phone.placeholder='+594… ou +33…';phone.pattern='[+0-9 \\(\\).\\-]{8,24}';label.htmlFor=phone.id='signup-phone-'+n;extra.append(label,phone);
   const consentLabel=make('label');consentLabel.className='signup-wa';const consent=make('input');consent.type='checkbox';consent.name='p'+n+'WhatsappConsent';consentLabel.append(consent,document.createTextNode(' Accord pour rejoindre le groupe WhatsApp.'));
-  const grid=first.closest('.player-grid');grid.append(extra,consentLabel);first.closest('fieldset').append(box);
+  const grid=first.closest('.player-grid');grid.append(extra,consentLabel);first.closest('fieldset').querySelector('legend').append(box);
   let key='',promise=Promise.resolve(),timer,version=0;
   async function lookup(){
    const next=first.value.trim()+'|'+last.value.trim();if(next===key)return promise;key=next;const id=++version;
