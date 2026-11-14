@@ -1,5 +1,5 @@
 import {attachKnownPlayers} from './known-players.js?v=e4';
-import {rankTeams,createTeamCard} from './team-cards.js?v=e4-mx1';
+import {rankTeams,createTeamCard} from './team-cards.js?v=e4-duo';
 import {config} from './supabase-config.js?v=94';
 async function rawRpc(name,body={}){
  let response;
