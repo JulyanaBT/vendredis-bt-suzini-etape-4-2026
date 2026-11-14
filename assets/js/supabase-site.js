@@ -1,4 +1,4 @@
-import {attachKnownPlayers} from './known-players.js?v=e4-compact2';
+import {attachKnownPlayers} from './known-players.js?v=e4-inline';
 import {rankTeams,createTeamCard} from './team-cards.js?v=e4-duo';
 import {config} from './supabase-config.js?v=94';
 async function rawRpc(name,body={}){
