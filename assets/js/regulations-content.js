@@ -29,11 +29,11 @@ export const RULES = {
           "Vendredi 27 novembre 2026 · TC Suzini.",
           "Accueil et contrôle des licences : 17 h 45.",
           "Début des matchs : 18 h · heure de Guyane.",
-          "Double mixte BT250 · 12 équipes maximum."
+          "Double mixte BT250 · 8 équipes maximum."
         ],
-        "text": "Vendredi 27 novembre 2026 · TC Suzini. · Accueil et contrôle des licences : 17 h 45. · Début des matchs : 18 h · heure de Guyane. · Double mixte BT250 · 12 équipes maximum.",
+        "text": "Vendredi 27 novembre 2026 · TC Suzini. · Accueil et contrôle des licences : 17 h 45. · Début des matchs : 18 h · heure de Guyane. · Double mixte BT250 · 8 équipes maximum.",
         "featured": false,
-        "body": "<ul><li>Vendredi 27 novembre 2026 · TC Suzini.</li><li>Accueil et contrôle des licences : 17 h 45.</li><li>Début des matchs : 18 h · heure de Guyane.</li><li>Double mixte BT250 · 12 équipes maximum.</li></ul><p>Le tournoi est organisé au Tennis Club de Suzini, 217 route de Suzini, 97354 Rémire-Montjoly. Chaque paire réunit un joueur et une joueuse. Toutes les heures du site sont en heure de Guyane (UTC−3). Le juge-arbitre est Jules PARISIS, seul JA annoncé pour cette étape. Le comité comprend Quentin SAVOYEN, Mélanie FREITAS et Lucas TRENEL. Les règles sportives FFT et les décisions du juge-arbitre prévalent sur les indications prévisionnelles du site.</p>"
+        "body": "<ul><li>Vendredi 27 novembre 2026 · TC Suzini.</li><li>Accueil et contrôle des licences : 17 h 45.</li><li>Début des matchs : 18 h · heure de Guyane.</li><li>Double mixte BT250 · 8 équipes maximum.</li></ul><p>Le tournoi est organisé au Tennis Club de Suzini, 217 route de Suzini, 97354 Rémire-Montjoly. Chaque paire réunit un joueur et une joueuse. Toutes les heures du site sont en heure de Guyane (UTC−3). Le juge-arbitre est Jules PARISIS, seul JA annoncé pour cette étape. Le comité comprend Quentin SAVOYEN, Mélanie FREITAS et Lucas TRENEL. Les règles sportives FFT et les décisions du juge-arbitre prévalent sur les indications prévisionnelles du site.</p>"
       },
       {
         "title": "Inscription",
@@ -82,18 +82,6 @@ export const RULES = {
         "text": "4 : poule unique · 6 matchs · 3 par paire. · 5 : poule unique · 10 matchs · 4 par paire. · 6 : 2 poules de 3 + classement · 11 matchs. · 7 : 10 matchs · 8 : 12 matchs.",
         "featured": false,
         "body": "<ul><li>4 : poule unique · 6 matchs · 3 par paire.</li><li>5 : poule unique · 10 matchs · 4 par paire.</li><li>6 : 2 poules de 3 + classement · 11 matchs.</li><li>7 : 10 matchs · 8 : 12 matchs.</li></ul><p>À six équipes, les deux premiers de chaque poule disputent les demi-finales croisées, la finale et la petite finale ; les deux troisièmes jouent la cinquième place. Chaque paire joue trois ou quatre matchs. À sept équipes : trois quarts, puis demi-finales, finale et petite finale ; les trois perdants des quarts jouent une poule de classement 5–7. TS1 joue deux matchs, les autres trois. À huit : quarts, puis tableaux 1–4 et 5–8, avec demi-finales et matchs de classement ; chacun joue trois matchs.</p>"
-      },
-      {
-        "title": "Formules : 9 à 12 équipes",
-        "points": [
-          "9 : 19 matchs · 3 à 6 par paire.",
-          "10 : 19 matchs · 3 à 5 par paire.",
-          "11 : 18 matchs · 3 à 4 par paire.",
-          "12 : 20 matchs · 3 à 4 par paire."
-        ],
-        "text": "9 : 19 matchs · 3 à 6 par paire. · 10 : 19 matchs · 3 à 5 par paire. · 11 : 18 matchs · 3 à 4 par paire. · 12 : 20 matchs · 3 à 4 par paire.",
-        "featured": false,
-        "body": "<ul><li>9 : 19 matchs · 3 à 6 par paire.</li><li>10 : 19 matchs · 3 à 5 par paire.</li><li>11 : 18 matchs · 3 à 4 par paire.</li><li>12 : 20 matchs · 3 à 4 par paire.</li></ul><p>À neuf : sept exemptions ; premier tour puis quarts, demi-finales, finale et petite finale. Les cinq autres paires disputent une poule 5–9. Attention : la paire gagnant le premier tour puis perdant son quart peut jouer six matchs ; cette formule demeure à ajuster et à confirmer par le JA avant sa mise en œuvre. À dix : six exemptions ; les six équipes éliminées avant les demi-finales forment deux poules de trois, puis les équipes de même rang se rencontrent pour les places 5–6, 7–8 et 9–10. À onze : cinq exemptions ; tableau principal et classement 5–8, avec une poule de trois entre les perdants du premier tour pour les places 9–11. À douze : quatre exemptions ; les quatre vainqueurs du premier tour rejoignent les quatre TS en quarts ; tableaux de classement 1–4, 5–8 et 9–12 avec petite finale et matchs de classement. Un forfait peut réduire le nombre de matchs effectivement joués.</p>"
       },
       {
         "title": "Horaires et récupération",

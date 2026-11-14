@@ -1,5 +1,5 @@
-import {rpc} from './supabase-site.js?v=e4-next';
-import {selectSignupTab} from './registration-ui.js?v=94';
+import {rpc} from './supabase-site.js?v=e4-wait';
+import {selectSignupTab} from './registration-ui.js?v=e4-wait';
 const $=id=>document.getElementById(id),make=(tag,text,cls)=>{const n=document.createElement(tag);if(text)n.textContent=text;if(cls)n.className=cls;return n;};
 const api=(action,data={})=>rpc('suzini_e4_partners',{p_action:action,p_data:data});
 const pretty=s=>String(s||'').toLocaleLowerCase('fr').replace(/(^|[\s’'-])\p{L}/gu,c=>c.toLocaleUpperCase('fr'));

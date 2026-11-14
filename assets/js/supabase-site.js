@@ -39,7 +39,7 @@ if(form){form.noValidate=true;
  for(const id of ['p1Licence','p2Licence']){const input=document.getElementById(id);input.maxLength=8;input.pattern='[0-9]{1,7}[A-Za-z]?';}
  const privacy=document.createElement('details');privacy.className='registration-privacy';const summary=document.createElement('summary');summary.textContent='Utilisation des informations';const privacyText=document.createElement('p');privacyText.textContent='Seuls les prénoms, les initiales des noms et les classements sont affichés au public. Les noms complets et les numéros de licence restent réservés à l’organisation. Le nom d’équipe utilise les prénoms, avec une initiale en cas d’homonymie. Les numéros de licence sont réservés à l’organisation pour la gestion de ce tournoi.';privacy.append(summary,privacyText);button.before(privacy);
  form.addEventListener('submit',async event=>{event.preventDefault();const recognized=await known?.prepare();if(!registrationOpen||button.disabled||!form.reportValidity())return;button.disabled=true;form.dataset.submitting='true';status.textContent='Enregistrement en cours…';
- try{const receipt=await rpc('suzini_e4_register_payment',{p_team:Object.fromEntries(new FormData(form))});status.textContent='';form.reset();document.dispatchEvent(new CustomEvent('suzini:registered',{detail:receipt}));document.dispatchEvent(new CustomEvent('suzini:registration-next',{detail:recognized?.some(x=>x!==true)}));}
+ try{const receipt=await rpc('suzini_e4_register_payment',{p_team:Object.fromEntries(new FormData(form))});status.textContent='';form.reset();if(receipt.waitlisted){document.dispatchEvent(new Event('suzini:waitlisted'));return;}document.dispatchEvent(new CustomEvent('suzini:registered',{detail:receipt}));document.dispatchEvent(new CustomEvent('suzini:registration-next',{detail:recognized?.some(x=>x!==true)}));}
  catch(error){status.textContent=error.message;}finally{delete form.dataset.submitting;button.disabled=!registrationOpen;}});
 }
 const list=document.getElementById('rankedList');
@@ -51,3 +51,6 @@ if(list){let teams=[];
 }
 
 if(document.body.dataset.space==='public'){setInterval(()=>{if(!document.hidden)loadStatus();},5000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)loadStatus();});}
+
+export async function loadWaitlist(){const list=document.getElementById('waitlistedTeams');if(!list)return;try{const names=await rpc('suzini_e4_waitlist');list.replaceChildren(...(names.length?names:['Aucune équipe en attente.']).map(name=>{const item=document.createElement('li');item.textContent=name;return item;}));}catch{list.textContent='Liste d’attente indisponible.';}}
+if(list)loadWaitlist();

@@ -18,3 +18,5 @@ function next(step){
  if(!modal.open)modal.showModal();actions.firstElementChild.focus();
 }
 document.addEventListener('suzini:registration-next',e=>next(e.detail?0:1));
+
+document.addEventListener('suzini:waitlisted',()=>{next(2);modal.querySelector('h2').textContent='Équipe sur liste d’attente';modal.querySelector('p').textContent='Les huit places sont prises. Attendez que le club confirme votre place avant de payer.';});
