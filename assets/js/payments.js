@@ -1,4 +1,4 @@
-import {rpc} from './supabase-site.js?v=e4-mobile';
+import {rpc} from './supabase-site.js?v=e4-next';
 import {displayShortPlayerName,displayFirstName} from './team-cards.js?v=94';
 import {config} from './supabase-config.js?v=94';
 const paymentUrl="https://tennis-club-de-suzini.sumupstore.com/article/beach-tennis-inscription-double-mixte-challenge-pour-un-competiteur-de-la-paire";
@@ -6,11 +6,8 @@ if(!paymentUrl){const a=document.getElementById('paymentLink');a?.removeAttribut
 if(paymentUrl){const a=document.getElementById('paymentLink');a.href=paymentUrl;a.removeAttribute('aria-disabled');a.removeAttribute('tabindex');a.textContent='Payer en ligne · 10 € par joueur';}
 const $=id=>document.getElementById(id),key='suzini-e4-payment-receipt';
 let receipt=null;try{receipt=JSON.parse(localStorage.getItem(key)||'null');}catch{}
-function setReceipt(value){receipt=value;try{localStorage.setItem(key,JSON.stringify(value));}catch{}renderReceipt();}
-function renderReceipt(){document.querySelectorAll('[name=paymentChoice]').forEach(input=>{input.disabled=!receipt?.token;input.checked=input.value===receipt?.choice;});if(receipt?.token){$('paymentChoiceStatus').textContent=receipt.choice?'Votre choix est enregistré. Vous pouvez le modifier.':'Choisissez votre mode de paiement.';}}
+function setReceipt(value){receipt=value;try{localStorage.setItem(key,JSON.stringify(value));}catch{}}
 document.addEventListener('suzini:registered',event=>{setReceipt(event.detail);loadTeams();});
-document.querySelectorAll('[name=paymentChoice]').forEach(input=>input.addEventListener('change',async()=>{if(!receipt?.token)return;const token=receipt.token,choice=input.value;document.querySelectorAll('[name=paymentChoice]').forEach(i=>i.disabled=true);$('paymentChoiceStatus').textContent='Enregistrement…';try{await rpc('suzini_e4_payment_choice',{p_token:token,p_choice:choice});if(receipt.token===token)setReceipt({...receipt,choice});if(choice==='online_now'){if(paymentUrl)location.assign(paymentUrl);else $('paymentChoiceStatus').textContent='Choix enregistré. Le lien de paiement sera disponible prochainement.';}if(choice==='cash')$('paymentChoiceStatus').textContent='Choix enregistré : règlement en espèces au club, le jour du tournoi.';}catch(error){renderReceipt();$('paymentChoiceStatus').textContent=error.message;}finally{document.querySelectorAll('[name=paymentChoice]').forEach(i=>i.disabled=!receipt?.token);}}));
-renderReceipt();
 const el=(tag,text,className)=>{const n=document.createElement(tag);n.textContent=text;if(className)n.className=className;return n;};
 let teams=[],loading=false;
 function renderTeams(){
