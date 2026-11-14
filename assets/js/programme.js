@@ -15,7 +15,7 @@ division='DM';
 if(!COURTS[division])division='DM';
 const params=new URLSearchParams(location.search);
 try{if(isClub&&sessionStorage.getItem('suzini_e4_club_demo')==='true')mode='demo';}catch{}
-// Demo is entered explicitly in Club; a public URL always uses the real tournament.
+// Public preview uses the same tab preference, with authorization enforced by the server.
 let demoButton=null,demoReset=null,matchWritePending=0;
 async function matchWrite(method,args){matchWritePending++;try{return await withDeadline(client.rpc(method,args));}finally{matchWritePending--;}}
 function syncDemoUI(){
@@ -613,8 +613,15 @@ async function load(){
  try{
  let next;
  if(isClub){const r=await withDeadline(client.rpc('suzini_e4_match_manager_state',{p_simulation:mode==='demo'}));if(r.error)throw r.error;next=r.data;}
- else next=await rpc('suzini_e4_match_state',{p_simulation:false});
- if(version!==generation||wanted!==mode)return;if(!!next.simulation!==(mode==='demo'))throw Error('Mode de tournoi incohérent. Revenez au réel puis relancez la démo.');data=next;serverOffset=Date.parse(next.server_now||new Date().toISOString())-Date.now();error='';render();
+ else {
+ let preview=false;
+ try{preview=sessionStorage.getItem('suzini_e4_club_demo')==='true';}catch{}
+ if(preview){
+ try{const r=await withDeadline(client.rpc('suzini_e4_match_manager_state',{p_simulation:true}));if(!r.error&&r.data?.simulation===true)next=r.data;}catch{}
+ }
+ if(!next)next=await rpc('suzini_e4_match_state',{p_simulation:false});
+ }
+ if(version!==generation||wanted!==mode)return;if(isClub&&!!next.simulation!==(mode==='demo'))throw Error('Mode de tournoi incohérent. Revenez au réel puis relancez la démo.');data=next;serverOffset=Date.parse(next.server_now||new Date().toISOString())-Date.now();error='';render();
  }catch(e){if(version!==generation)return;error=e.message||'Vérifiez votre connexion.';render();}
 }
 if(isClub){
