@@ -3,7 +3,7 @@ import {createReception} from './club-reception.js?v=153';
 import {rpc as publicRpc} from './supabase-site.js?v=94';
 import {readRankingPdf} from './ranking-pdf.js?v=132';
 import {hasRankingConflict,rankingCounts,createRankingDetails} from './ranking-info.js?v=e4-duo2';
-import {createTeamCard,rankTeams,displayPlayerName} from './team-cards.js?v=e4-duo';
+import {createTeamCard,rankTeams,displayPlayerName} from './team-cards.js?v=e4-teams';
 if(location.hash.startsWith('#compte'))location.replace(new URL('compte.html',location.href));
 import {client,signIn} from './private-client.js?v=94';
 const $=id=>document.getElementById(id),login=$('adminLogin'),content=$('adminContent'),status=$('adminStatus');
