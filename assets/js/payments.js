@@ -16,11 +16,11 @@ let teams=[],loading=false;
 function renderTeams(){
  const name=(t,n)=>displayShortPlayerName(t['p'+n+'_last_name'],t['p'+n+'_first_name']);
  const count=t=>Number(t.paid_players)||0;
- const rows=[...teams].sort((a,b)=>count(a)-count(b)||(name(a,1)+' / '+name(a,2)).localeCompare(name(b,1)+' / '+name(b,2),'fr',{sensitivity:'base'}));
- $('paymentTeams').replaceChildren();$('paymentListStatus').textContent=rows.length?rows.length+' équipes · dames et messieurs':'Aucune équipe inscrite.';
+ const rows=[...teams].sort((a,b)=>count(a)-count(b)||(name(a,2)+' / '+name(a,1)).localeCompare(name(b,2)+' / '+name(b,1),'fr',{sensitivity:'base'}));
+ $('paymentTeams').replaceChildren();$('paymentListStatus').textContent=rows.length?rows.length+' équipes de double mixte':'Aucune équipe inscrite.';
  const dot=(state,label)=>{const d=el('span','€','euro-dot '+state);d.setAttribute('role','img');d.setAttribute('aria-label',label);d.title=label;return d;};
  for(const t of rows){const row=el('article','','payment-team payment-team-compact');
- for(const n of [1,2]){if(n===2)row.append(el('span','/','payment-separator'));const player=el('span','','payment-player-inline');player.append(el('span',name(t,n),'payment-player-name'),dot(t['p'+n+'_paid']?'paid':'unpaid',name(t,n)+(t['p'+n+'_paid']?' : payé':' : non payé')));row.append(player);}
+ for(const n of [2,1]){if(n===1)row.append(el('span','/','payment-separator'));const player=el('span','','payment-player-inline');player.append(el('span',name(t,n),'payment-player-name'),dot(t['p'+n+'_paid']?'paid':'unpaid',name(t,n)+(t['p'+n+'_paid']?' : payé':' : non payé')));row.append(player);}
  const state=count(t)===2?'paid':count(t)===1?'partial':'unpaid';row.append(dot(state,'Équipe : '+(count(t)===2?'payée':count(t)===1?'partiellement payée':'non payée')));$('paymentTeams').append(row);
  }
 }

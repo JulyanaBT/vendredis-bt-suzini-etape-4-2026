@@ -51,7 +51,7 @@ function courtName(id,compact=false){
  return icons+' '+label+' '+icons;
 }
 function current(){return data?.divisions.find(d=>d.division===division);}
-function name(id){return data?.teams.find(t=>t.id===id)?.team_name||id||'À déterminer';}
+function name(id){const team=data?.teams.find(t=>t.id===id);if(team?.p2_first_name&&team?.p1_first_name)return team.p2_first_name+' / '+team.p1_first_name;const label=team?.team_name;if(!label)return id||'À déterminer';const pair=label.split(' / ');return pair.length===2?pair.reverse().join(' / '):label;}
 function chronoName(id){return name(id);}
 const clock=(value,seconds=false)=>new Intl.DateTimeFormat('fr-FR',{timeZone:'America/Cayenne',hour:'2-digit',minute:'2-digit',...(seconds?{second:'2-digit'}:{})}).format(new Date(value));
 function scoreText(r){return r?r.score.sets.map(s=>s.join('–')).join(' / ')+(r.score.super?' · STB '+r.score.super.join('–'):''):'';}
@@ -597,7 +597,7 @@ function updateRoulette(){
  if(!d.draw_started_at){status.textContent='En attente de la diffusion publique du tirage.';return;}
  if(!spinning){status.textContent=total+' équipes tirées · '+(replaying?'replay terminé':'tirage terminé');return;}
  const revealed=(d.draw_reveals||[]).slice(0,count).map(x=>x.team_id),candidates=data.teams.filter(t=>t.division===division&&!(d.seeds||[]).includes(t.id)&&!revealed.includes(t.id));
- if(displayed&&candidates.length&&!drawFlight)displayed.textContent=candidates[Math.floor(Date.now()/140)%candidates.length].team_name;
+ if(displayed&&candidates.length&&!drawFlight)displayed.textContent=name(candidates[Math.floor(Date.now()/140)%candidates.length].id);
  if(replaying){status.textContent='Replay rapide · '+count+' / '+total+' équipes révélées';return;}
  const now=Date.now()+serverOffset,next=Date.parse(d.draw_started_at)+(count+1)*60000,seconds=Math.max(0,Math.ceil((next-now)/1000));
  status.textContent=count+' / '+total+' équipes révélées · prochaine dans '+Math.floor(seconds/60)+':'+String(seconds%60).padStart(2,'0');
