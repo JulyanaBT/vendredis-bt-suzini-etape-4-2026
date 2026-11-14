@@ -1,4 +1,4 @@
-import {attachKnownPlayers} from './known-players.js?v=e4-contact';
+import {attachKnownPlayers} from './known-players.js?v=e4-compact2';
 import {createReception} from './club-reception.js?v=153';
 import {rpc as publicRpc} from './supabase-site.js?v=94';
 import {readRankingPdf} from './ranking-pdf.js?v=132';
